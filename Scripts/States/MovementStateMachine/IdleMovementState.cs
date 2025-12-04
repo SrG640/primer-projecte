@@ -19,7 +19,7 @@ public partial class IdleMovementState : State
 
     public override void UpdatePhysics(double delta)
     {
-        if (!_player.IsOnFloor())
+        if (!_player.IsOnFloor()&& !_player.IsDead)
         {
             if (_player.Velocity.Y < 0)
                 stateMachine.TransitionTo("JumpingMovementState");
@@ -29,7 +29,7 @@ public partial class IdleMovementState : State
     }
     public override void Update(double delta)
     {
-        if (Input.IsActionPressed("move_left") || Input.IsActionPressed("move_right"))
+        if (Input.IsActionPressed("move_left") || Input.IsActionPressed("move_right") && !_player.IsDead)
             stateMachine.TransitionTo("RunningMovementState");
     }
 
