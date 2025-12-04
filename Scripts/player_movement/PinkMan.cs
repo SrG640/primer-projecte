@@ -1,0 +1,57 @@
+using Godot;
+using System;
+using System.Threading.Tasks;
+
+public partial class PinkMan : CharacterBody2D
+{
+	private const float Speed = 250.0f;
+	private const float JumpVelocity = -500.0f;
+	bool canDoubleJump = true;
+	public bool IsDead = false;
+	private AnimatedSprite2D sprite;
+
+    public override void _Ready()
+    {
+        sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+    }
+
+	public void SetAnimation(string animationName)
+    { 
+		if (sprite == null) return;
+		if (IsDead && animationName != "Die") return;
+		GD.Print($"Playing: {animationName}");
+		sprite.Play(animationName);
+    }
+
+	public float GetSpeed()
+    {
+        return Speed;
+    }
+
+	public float GetJumpSpeed()
+    {
+        return JumpVelocity;
+    }
+
+	public bool GetDoubleJumpAvailable()
+	{
+		return canDoubleJump;
+	}
+	public void SetDoubleJumpAvailable(bool b)
+	{
+		canDoubleJump = b;
+	}
+
+	public async Task Dead()
+    {
+		IsDead = true;
+        SetAnimation("Die");
+        Velocity = Vector2.Zero;
+
+		SetPhysicsProcess(false);
+		SetProcessInput(false);
+		
+		await ToSignal(sprite,"animation_finished");
+		GetTree().ReloadCurrentScene();
+    }
+}
