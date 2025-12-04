@@ -4,47 +4,47 @@ using Godot;
 
 public partial class DoubleJumpMovementState : State
 {
-    public PinkMan _player;
+    public PinkMan player;
 
     public override void Ready()
     {
-        _player = (PinkMan)GetTree().GetFirstNodeInGroup("PinkManGroup");
+        player = (PinkMan)GetTree().GetFirstNodeInGroup("PinkManGroup");
     }
     public override void Enter()
     {
-        _player.SetDoubleJumpAvailable(false);
+        player.SetDoubleJumpAvailable(false);
 
-        _player.SetAnimation("DoubleJump");
+        player.SetAnimation("DoubleJump");
 
-        Vector2 velocity = _player.Velocity;
-        velocity.Y = _player.GetJumpSpeed();
-		_player.Velocity = velocity;
+        Vector2 velocity = player.Velocity;
+        velocity.Y = player.GetJumpSpeed();
+		player.Velocity = velocity;
 
     }
 
     public override void UpdatePhysics(double delta)
     {
-        Vector2 velocity = _player.Velocity;
+        Vector2 velocity = player.Velocity;
         
-        if (!_player.IsOnFloor() && !_player.IsDead)
+        if (!player.IsOnFloor() && !player.IsDead)
 		{
-			velocity += _player.GetGravity() * (float)delta;
+			velocity += player.GetGravity() * (float)delta;
 		}
 
        float direction = Input.GetAxis("move_left", "move_right");
-		if (direction != 0f && !_player.IsDead)
+		if (direction != 0f && !player.IsDead)
 		{
-			velocity.X = direction * _player.GetSpeed();
+			velocity.X = direction * player.GetSpeed();
 		}
 		else
 		{
-			velocity.X = Mathf.MoveToward(velocity.X, 0, _player.GetSpeed());
+			velocity.X = Mathf.MoveToward(velocity.X, 0, player.GetSpeed());
 		}
 
-        _player.Velocity = velocity;
-        _player.MoveAndSlide();
+        player.Velocity = velocity;
+        player.MoveAndSlide();
 
-        if (_player.Velocity.Y > 0 && !_player.IsDead)
+        if (player.Velocity.Y > 0 && !player.IsDead)
             stateMachine.TransitionTo("FallingMovementState");
     }
 }

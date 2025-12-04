@@ -2,26 +2,26 @@ using Godot;
 
 public partial class IdleMovementState : State
 {
-    public PinkMan _player;
+    public PinkMan player;
 
     public override void Ready()
     {
-        _player = (PinkMan)GetTree().GetFirstNodeInGroup("PinkManGroup");
+        player = (PinkMan)GetTree().GetFirstNodeInGroup("PinkManGroup");
     }
     public override void Enter()
     {
         
-        _player.SetAnimation("Idle");
+        player.SetAnimation("Idle");
 
-        _player.SetDoubleJumpAvailable(true);
+        player.SetDoubleJumpAvailable(true);
     }
 
 
     public override void UpdatePhysics(double delta)
     {
-        if (!_player.IsOnFloor()&& !_player.IsDead)
+        if (!player.IsOnFloor()&& !player.IsDead)
         {
-            if (_player.Velocity.Y < 0)
+            if (player.Velocity.Y < 0)
                 stateMachine.TransitionTo("JumpingMovementState");
             else
                 stateMachine.TransitionTo("FallingMovementState");
@@ -29,14 +29,14 @@ public partial class IdleMovementState : State
     }
     public override void Update(double delta)
     {
-        if (Input.IsActionPressed("move_left") || Input.IsActionPressed("move_right") && !_player.IsDead)
+        if (Input.IsActionPressed("move_left") || Input.IsActionPressed("move_right") && !player.IsDead)
             stateMachine.TransitionTo("RunningMovementState");
     }
 
     public override void HandleInput(InputEvent @event)
     {
         
-        if (@event.IsActionPressed("jump") && _player.IsOnFloor() && !_player.IsDead)
+        if (@event.IsActionPressed("jump") && player.IsOnFloor() && !player.IsDead)
             stateMachine.TransitionTo("JumpingMovementState");
     }
 }

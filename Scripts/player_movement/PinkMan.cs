@@ -9,6 +9,7 @@ public partial class PinkMan : CharacterBody2D
 	bool canDoubleJump = true;
 	public bool IsDead = false;
 	private AnimatedSprite2D sprite;
+	[Signal]public delegate void JumpedEventHandler();
 
     public override void _Ready()
     {

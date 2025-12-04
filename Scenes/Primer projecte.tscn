@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://c3xonltrjstxk"]
+[gd_scene load_steps=8 format=4 uid="uid://c3xonltrjstxk"]
 
 [ext_resource type="Texture2D" uid="uid://cre2s0ttjidvw" path="res://Assets/Levels/Tutorial/Terrain (16x16).png" id="1_bmimp"]
 [ext_resource type="Texture2D" uid="uid://lt6n12d5thrn" path="res://Assets/Levels/Tutorial/Green.png" id="2_nu4n5"]
 [ext_resource type="PackedScene" uid="uid://bs8aj3ku0r02s" path="res://Scenes/Player.tscn" id="3_nu4n5"]
+[ext_resource type="PackedScene" uid="uid://b12rcxd3venjf" path="res://Scenes/Duck.tscn" id="5_b8p0r"]
 [ext_resource type="PackedScene" uid="uid://ctbcp4o0k05aq" path="res://Scenes/Saw.tscn" id="5_ro2rb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_34x7t"]
@@ -197,6 +198,11 @@ tile_set = SubResource("TileSet_ro2rb")
 [node name="Player" parent="." instance=ExtResource("3_nu4n5")]
 position = Vector2(71, 491)
 
-[node name="Area2D" parent="." instance=ExtResource("5_ro2rb")]
-position = Vector2(483, 390)
-scale = Vector2(2, 2)
+[node name="Duck" parent="." instance=ExtResource("5_b8p0r")]
+position = Vector2(869, 302)
+
+[node name="Saw" parent="." instance=ExtResource("5_ro2rb")]
+position = Vector2(288, 442)
+
+[node name="Saw2" parent="." instance=ExtResource("5_ro2rb")]
+position = Vector2(477, 392)
