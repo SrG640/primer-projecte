@@ -229,5 +229,6 @@ position = Vector2(-5.5, -30)
 shape = SubResource("RectangleShape2D_enhka")
 
 [connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
+[connection signal="body_exited" from="Vision" to="." method="_on_vision_body_exited"]
 [connection signal="body_entered" from="Damage" to="." method="_on_damage_body_entered"]
 [connection signal="body_entered" from="Kill" to="." method="_on_kill_body_entered"]

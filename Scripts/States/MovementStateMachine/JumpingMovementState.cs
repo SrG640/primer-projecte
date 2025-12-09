@@ -10,7 +10,7 @@ public partial class JumpingMovementState : State
     }
     public override void Enter()
     {
-        
+        player.EmitSignal("Jumped");
         player.SetAnimation("Jump");
 
         Vector2 velocity = player.Velocity;

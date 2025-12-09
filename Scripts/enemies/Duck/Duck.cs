@@ -9,18 +9,22 @@ public partial class Duck : RigidBody2D
 	private const float JumpVelocity = -500.0f;
 	private AnimatedSprite2D sprite;
 	private bool IsDead = false;
+    
 	public override void _Ready()
     {
         sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-    }
-	public void Enter()
-    {
         duck.SetAnimation("Idle");
+    }
+    public override void _PhysicsProcess(double delta)
+    {
+        if (LinearVelocity == Vector2.Zero)
+        {
+            SetAnimation("Idle");
+        }
     }
 
 	public void SetAnimation(string animationName)
-    { 
-		GD.Print($"Duck Playing: {animationName}");
+    {
 		sprite.Play(animationName);
     }
 
@@ -44,14 +48,31 @@ public partial class Duck : RigidBody2D
 			}
         }
     }
-		private async void _on_vision_body_entered(Node2D body)
+		private void _on_vision_body_entered(Node2D body)
     {
         if (body is PinkMan player)
         {
             GD.Print("Duck saw the Player");
+            player.Jumped += _on_player_jumped;
         }
     }
-		private async void _on_kill_body_entered(Node2D body)
+
+    private void _on_player_jumped()
+    {
+        LinearVelocity = new Vector2(0, GetJumpSpeed());
+        SetAnimation("Jump");
+    }
+
+    private void _on_vision_body_exited(Node2D body)
+    {
+        if (body is PinkMan player)
+        {
+            GD.Print("Duck lost sight of the Player");
+            player.Jumped -= _on_player_jumped;
+        }
+    }
+
+    	private async void _on_kill_body_entered(Node2D body)
     {
         if (body is PinkMan player)
         {
