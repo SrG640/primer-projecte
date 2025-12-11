@@ -3,21 +3,17 @@ using System;
 
 public partial class Finish : Area2D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	public void _on_body_entered (Node2D body)
 	{
-	}
+		if (body is PinkMan player && player.SceneFilePath == "res://Scenes/Level1.tscn")
+        {
+            GD.Print("Level Finished!");
+			GetTree().ChangeSceneToFile("res://Scenes/Level2.tscn");
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-
-	public void _on_body_entered(Node2D body)
-	{
-		if (body is PinkMan player)
+        }
+		else
 		{
-			GD.Print("Game Completed!");
+			GD.Print("Game Finished!");
 			GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
 		}
 	}
