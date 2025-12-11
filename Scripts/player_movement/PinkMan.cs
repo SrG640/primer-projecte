@@ -15,6 +15,19 @@ public partial class PinkMan : CharacterBody2D
     {
         sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
     }
+	 public override void _PhysicsProcess(double delta)
+    {
+        if (sprite == null) return;
+
+        if (Input.IsActionJustPressed("ui_left"))
+        {
+            sprite.FlipH = true;
+        }
+        else if (Input.IsActionJustPressed("ui_right"))
+        {
+            sprite.FlipH = false;
+        }
+    }
 
 	public void SetAnimation(string animationName)
     { 
