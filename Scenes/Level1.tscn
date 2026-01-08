@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://c3xonltrjstxk"]
+[gd_scene load_steps=13 format=4 uid="uid://c3xonltrjstxk"]
 
 [ext_resource type="Texture2D" uid="uid://lt6n12d5thrn" path="res://Assets/Levels/Tutorial/Green.png" id="1_t3or0"]
 [ext_resource type="Texture2D" uid="uid://cre2s0ttjidvw" path="res://Assets/Levels/Tutorial/Terrain (16x16).png" id="2_ysn8j"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c5p8pafrcykcx" path="res://Scenes/Saw.tscn" id="5_bdlbp"]
 [ext_resource type="Texture2D" uid="uid://ban5jtfwj0kvk" path="res://Assets/Levels/Tutorial/Start (Idle).png" id="6_2h8qs"]
 [ext_resource type="PackedScene" uid="uid://e0amw4r3h44k" path="res://Scenes/NextLevel.tscn" id="7_ysn8j"]
+[ext_resource type="Texture2D" uid="uid://c487xfx4hnyjg" path="res://Assets/Levels/Tutorial/Grey Off.png" id="8_6ll4n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_34x7t"]
 texture = ExtResource("2_ysn8j")
@@ -235,7 +236,7 @@ position = Vector2(289, 486)
 position = Vector2(482, 487)
 
 [node name="Finish" parent="." instance=ExtResource("7_ysn8j")]
-position = Vector2(1056, 240)
+position = Vector2(1080, 240.00002)
 scale = Vector2(3, 3)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
@@ -255,3 +256,11 @@ disabled = true
 
 [node name="Saw3" parent="." instance=ExtResource("5_bdlbp")]
 position = Vector2(98, 487)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 3
+position = Vector2(973, 262)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+texture = ExtResource("8_6ll4n")
