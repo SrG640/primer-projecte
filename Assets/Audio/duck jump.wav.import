@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://exgaidifwoia"
+path="res://.godot/imported/duck jump.wav-e98b5ca8af974b7fcf2ce81361f9e2ef.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/duck jump.wav"
+dest_files=["res://.godot/imported/duck jump.wav-e98b5ca8af974b7fcf2ce81361f9e2ef.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

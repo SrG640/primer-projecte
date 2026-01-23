@@ -13,11 +13,28 @@ public partial class Duck : RigidBody2D
 
     private AnimatedSprite2D sprite;
     public bool IsDead = false;
+
+    private AudioStreamPlayer2D duckjumpSound;
+    private AudioStreamPlayer2D duckdieSound;
     
     public override void _Ready()
     {
         sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         SetAnimation("Idle");
+        foreach (Node node in GetChildren())
+        {
+            if (node is AudioStreamPlayer2D audio)
+            {
+                if (audio.Name == "DuckJumpSound")
+                {
+                    duckjumpSound = audio;
+                }
+                else if (audio.Name == "DuckDieSound")
+                {
+                    duckdieSound = audio;
+                }
+            }
+        }
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -64,7 +81,10 @@ public partial class Duck : RigidBody2D
     private void _on_player_jumped()
     {
         LinearVelocity = new Vector2(0, GetJumpSpeed());
+        duckjumpSound.PitchScale = (float) GD.RandRange(0.9f, 1.1f);
+        duckjumpSound.Play();
         SetAnimation("Jump");
+        
     }
 
     private void _on_vision_body_exited(Node2D body)
@@ -82,7 +102,9 @@ public partial class Duck : RigidBody2D
         {
             IsDead = true;
             GD.Print("Duck was killed by Player");
+            duckdieSound.Play();
             SetAnimation("Die");
+            
 
             float dir = 0f;
             if (player is CharacterBody2D cb)

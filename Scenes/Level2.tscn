@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://d3sa1cqwqj7kx"]
+[gd_scene load_steps=12 format=4 uid="uid://d3sa1cqwqj7kx"]
 
 [ext_resource type="Texture2D" uid="uid://c7n48euo8xkge" path="res://Assets/Levels/Tutorial/Purple.png" id="1_n3cqh"]
 [ext_resource type="Texture2D" uid="uid://cre2s0ttjidvw" path="res://Assets/Levels/Tutorial/Terrain (16x16).png" id="2_jriq2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c5p8pafrcykcx" path="res://Scenes/Saw.tscn" id="5_70df5"]
 [ext_resource type="PackedScene" uid="uid://ktfahjq7fbju" path="res://Scenes/Finish.tscn" id="6_jriq2"]
 [ext_resource type="Texture2D" uid="uid://ban5jtfwj0kvk" path="res://Assets/Levels/Tutorial/Start (Idle).png" id="7_ehjmi"]
+[ext_resource type="AudioStream" uid="uid://duh1n5wjtcoog" path="res://Assets/Audio/level2.wav" id="8_p4u3k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_34x7t"]
 texture = ExtResource("2_jriq2")
@@ -382,3 +383,10 @@ position = Vector2(859, 293)
 
 [node name="Saw5" parent="." instance=ExtResource("5_70df5")]
 position = Vector2(774, 293)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(526, 216)
+stream = ExtResource("8_p4u3k")
+volume_db = -2.862
+pitch_scale = 1.11
+autoplay = true

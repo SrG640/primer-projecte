@@ -8,6 +8,8 @@ public partial class PinkMan : CharacterBody2D
 	private const float JumpVelocity = -500.0f;
 	bool canDoubleJump = true;
 	public bool IsDead = false;
+
+	private AudioStreamPlayer2D deathSound;
 	private AnimatedSprite2D sprite;
 	[Signal]public delegate void JumpedEventHandler();
 
@@ -59,6 +61,8 @@ public partial class PinkMan : CharacterBody2D
 	public async Task Dead()
     {
 		IsDead = true;
+		deathSound = GetNode<AudioStreamPlayer2D>("DeathSound");
+		deathSound.Play();
         SetAnimation("Die");
         Velocity = Vector2.Zero;
 

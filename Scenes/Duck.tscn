@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bp3i2fs6kb7t0"]
+[gd_scene load_steps=34 format=3 uid="uid://bp3i2fs6kb7t0"]
 
 [ext_resource type="Script" uid="uid://do2hem66xt15f" path="res://Scripts/enemies/Duck/Duck.cs" id="1_f17gh"]
 [ext_resource type="Texture2D" uid="uid://ryb4mwveud0v" path="res://Assets/Enemies/Duck/Hit (36x36).png" id="2_c8k0o"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dml2spf4m4xap" path="res://Assets/Enemies/Duck/Idle (36x36).png" id="4_74icv"]
 [ext_resource type="Texture2D" uid="uid://be2gxx2wqb76" path="res://Assets/Enemies/Duck/Jump (36x36).png" id="5_3b65o"]
 [ext_resource type="Texture2D" uid="uid://hk62u0ecah4p" path="res://Assets/Enemies/Duck/Jump Anticipation (36x36).png" id="6_jkk3b"]
+[ext_resource type="AudioStream" uid="uid://exgaidifwoia" path="res://Assets/Audio/duck jump.wav" id="7_enhka"]
+[ext_resource type="AudioStream" uid="uid://cb4vhxl5vg1x1" path="res://Assets/Audio/duck death.wav" id="8_enhka"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_opmlr"]
 radius = 14.5
@@ -227,6 +229,18 @@ shape = SubResource("CapsuleShape2D_f17gh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kill"]
 position = Vector2(-5.5, -30)
 shape = SubResource("RectangleShape2D_enhka")
+
+[node name="DuckJumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_enhka")
+volume_db = 5.0
+max_distance = 218.0
+attenuation = 1.6245052
+
+[node name="DuckDieSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_enhka")
+volume_db = -2.0
+pitch_scale = 0.92
+max_distance = 218.0
 
 [connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
 [connection signal="body_exited" from="Vision" to="." method="_on_vision_body_exited"]

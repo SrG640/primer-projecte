@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://v7g823p0aekm"]
+[gd_scene load_steps=5 format=3 uid="uid://v7g823p0aekm"]
 
 [ext_resource type="Script" uid="uid://c5fuakeel80nr" path="res://Scenes/MainMenu.cs" id="1_1ehe0"]
 [ext_resource type="Texture2D" uid="uid://bgs4e5xacws21" path="res://Assets/Levels/Tutorial/Yellow.png" id="2_ce3w2"]
 [ext_resource type="Texture2D" uid="uid://dwgdhdmcbo1tg" path="res://Assets/Levels/Tutorial/Logo.png" id="3_n45e2"]
+[ext_resource type="AudioStream" uid="uid://1bat4rm7tnk8" path="res://Assets/Audio/intro.wav" id="4_ce3w2"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_1ehe0")
@@ -62,6 +63,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Exit Game"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(579, 304)
+stream = ExtResource("4_ce3w2")
+autoplay = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

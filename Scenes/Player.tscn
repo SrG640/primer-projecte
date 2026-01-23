@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bs8aj3ku0r02s"]
+[gd_scene load_steps=55 format=3 uid="uid://bs8aj3ku0r02s"]
 
 [ext_resource type="Script" uid="uid://1qi5nscia8sf" path="res://Scripts/player_movement/PinkMan.cs" id="1_bhhdu"]
 [ext_resource type="Texture2D" uid="uid://cxk83n5csk62m" path="res://Assets/Characters/Pink Man/Double Jump (32x32).png" id="2_glx4g"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://d0ifp4s07gya5" path="res://Scripts/States/MovementStateMachine/JumpingMovementState.cs" id="9_megsn"]
 [ext_resource type="Script" uid="uid://r6ft2gfcxaal" path="res://Scripts/States/MovementStateMachine/FallingMovementState.cs" id="9_yoq75"]
 [ext_resource type="Script" uid="uid://c1kejegj7q36y" path="res://Scripts/States/MovementStateMachine/DoubleJumpMovementState.cs" id="12_miouo"]
+[ext_resource type="AudioStream" uid="uid://dv0naathb13ov" path="res://Assets/Audio/player death.wav" id="14_o3h8g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0x7a"]
 atlas = ExtResource("2_miouo")
@@ -322,10 +323,10 @@ script = ExtResource("1_bhhdu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
-position = Vector2(-1.9999999, -3.9750059)
+position = Vector2(-1.9999998, -5.9604645e-07)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_y3nn3")
-animation = &"Idle"
+animation = &"Run"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -356,6 +357,10 @@ script = ExtResource("9_megsn")
 
 [node name="DoubleJumpMovementState" type="Node" parent="MovementStateMachine"]
 script = ExtResource("12_miouo")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_o3h8g")
+volume_db = -15.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="MovementStateMachine/RunningMovementState/CoyoteTimer" to="." method="_on_timer_timeout"]
